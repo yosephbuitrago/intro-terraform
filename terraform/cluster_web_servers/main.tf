@@ -66,7 +66,7 @@ data "aws_ami" "ami" {
 
 
 resource "aws_security_group" "alb" {
-  name = "${var.basename}-${var.name}-sg"
+  name = "${var.basename}-${var.name}-alb-sg"
   vpc_id      = var.network_info.vpc_id
   # Allow inbound HTTP requests
   ingress {
