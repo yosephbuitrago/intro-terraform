@@ -150,7 +150,8 @@ resource "aws_launch_configuration" "lc" {
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, Rapidratings from:" > index.html && $(ec2metadata | grep instance-id) >> index.html
+              ID=$(ec2metadata | grep instance-id);
+              echo "Hello, Rapidratings from: $ID" > index.html
               nohup busybox httpd -f -p 8080 &
               EOF
 
