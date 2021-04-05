@@ -126,7 +126,7 @@ resource "aws_lb_listener_rule" "asg" {
 }
 
 resource "aws_lb_target_group" "asg" {
-  name     = "${var.basename}-${var.name}-tg"
+  name     = "${var.stripped_basename}${var.name}tg"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = var.network_info.vpc_id
