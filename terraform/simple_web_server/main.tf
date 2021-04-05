@@ -36,8 +36,8 @@ resource "aws_security_group" "ec2" {
 
 resource "aws_security_group_rule" "http" {
   type              = "ingress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = 8080
+  to_port           = 8080
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
@@ -77,4 +77,10 @@ resource "aws_instance" "ec2" {
   credit_specification {
     cpu_credits = "unlimited"
   }
+
+  user_data = <<EOF
+#!/bin/bash
+echo "Hello Rapidratings, This is an introduction to terraform" > index.html
+nohup busybox httpd -f -p 8080 &
+EOF
 }
