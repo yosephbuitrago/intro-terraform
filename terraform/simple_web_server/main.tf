@@ -55,7 +55,7 @@ resource "aws_security_group_rule" "outbound" {
 data "aws_ami" "ami" {
   filter {
     name   = "name"
-    values = ["ubuntu-focal-20.04-amd64-server*"]
+    values = ["*ubuntu-focal-20.04-amd64-server*"]
   }
 
   most_recent = true
