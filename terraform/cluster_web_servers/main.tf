@@ -66,7 +66,7 @@ data "aws_ami" "ami" {
 
 
 resource "aws_security_group" "alb" {
-  name = "${var.basename}-${var.name}"-sg
+  name = "${var.basename}-${var.name}-sg"
 
   # Allow inbound HTTP requests
   ingress {
@@ -151,7 +151,7 @@ resource "aws_launch_configuration" "lc" {
   user_data = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
-              nohup busybox httpd -f -p ${var.server_port} &
+              nohup busybox httpd -f -p 8080 &
               EOF
 
   # Required when using a launch configuration with an auto scaling group.
