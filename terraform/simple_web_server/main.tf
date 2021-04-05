@@ -80,7 +80,8 @@ resource "aws_instance" "ec2" {
 
   user_data = <<EOF
 #!/bin/bash
-echo "Hello Rapidratings, This is an introduction to terraform from ec2 $(ec2metadata | grep instance-id)" > index.html
+ID=$(ec2metadata | grep instance-id);
+echo "Hello, Rapidratings from: $ID" > index.html
 nohup busybox httpd -f -p 8080 &
 EOF
 }
